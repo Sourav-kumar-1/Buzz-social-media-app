@@ -1,0 +1,12 @@
+.sortButton-container{
+    padding:14px 8px;
+}
+
+.sort{
+    margin-left:5px;
+    background-color: #E5E7EA;
+    padding:4px;
+    border: none;
+    color: black;
+    font-weight: 600;
+}

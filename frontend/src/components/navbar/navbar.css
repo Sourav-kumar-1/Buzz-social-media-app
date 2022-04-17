@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar-------------------------------------*/
+
+.main-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:2px 8px;
+}
+.logo{
+    width:74px;
+    height:40px;
+}
+.right-nav{
+    display: flex;
+}
+
+.username{
+    display: flex;
+    margin-right: 16px;
+    align-items: center;
+}
+
+.user-image{
+    height:28px;
+    width:28px;
+    border-radius:50%;
+    margin-right: 3px;
+}
+
+.icons{
+    display: flex;
+}
+
+.msg-icon,.person-icon{
+    background-color: #dbdcde;
+    padding:8px;
+    border-radius: 50%;
+    display: flex;
+}
+
+.msg-icon{
+    margin-right: 6px;
+}

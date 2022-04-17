@@ -1,0 +1,11 @@
+.rightSideBar-container {
+  width: 300px;
+  border: 1px solid black;
+  min-width: 300px;
+}
+
+@media (max-width: 900px) {
+  .rightSideBar-container {
+    display: none;
+  }
+}
