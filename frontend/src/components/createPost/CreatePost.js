@@ -4,7 +4,7 @@ import "./createPost.css";
 import React, { useState } from "react";
 import ModalLayout from '../../components/modal/ModalLayout'
 import CreatePostModal from '../modal/CreatePostModal'
-import AddPhotoVideoModal from "../modal/AddPhotoVideoModal";
+
 
 
 const CreatePost = ({addNewPost}) => {
@@ -19,13 +19,7 @@ const CreatePost = ({addNewPost}) => {
     setShowModal(false);
   };
 
-  const openPhotoVideoModal=() =>{
-    setPhotoVideo(true);
-  }
 
-  const closePhotoVideoModal=() =>{
-    setPhotoVideo(false);
-  }
   return (
     <div className="createPost-container">
       <div className="input-container">
@@ -48,14 +42,11 @@ const CreatePost = ({addNewPost}) => {
           </>
         </ModalLayout>
 
-        <ModalLayout showModal={showPhotoVideo}>
-          <AddPhotoVideoModal closePhotoVideoModal={closePhotoVideoModal}></AddPhotoVideoModal>
-        </ModalLayout>
 
         
       </div>
 
-      <button className="photo-video" onClick={openPhotoVideoModal}>
+      <button className="photo-video" onClick={openPostModal}>
         <FcGallery className="gallery-icon" />
         <div>Photo/Video</div>
       </button>

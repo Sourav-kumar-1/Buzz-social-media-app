@@ -34,8 +34,12 @@ const CreatePostModal = ({ openPostModal, closePostModal, addNewPost }) => {
   };
 
   const createNewPost = () => {
-    addNewPost(textInput, media);
-    closePostModal();
+    if(textInput)
+    {
+      addNewPost(textInput, media);
+      closePostModal();
+    }
+   
   };
 
   const handleTextInput = (e) => {
@@ -75,13 +79,13 @@ const CreatePostModal = ({ openPostModal, closePostModal, addNewPost }) => {
             value={textInput}
             onChange={handleTextInput}
           ></textarea>
-          {/* {media ? (
+          {media ? (
             <div className="post-image">
               <img src={URL.createObjectURL(media)}></img>
             </div>
           ) : (
             <></>
-          )} */}
+          )}
         </div>
       </div>
       <div className="modal-footer">

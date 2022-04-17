@@ -55,6 +55,11 @@
     border: none;
     border-radius: 20px;
     padding:10px 24px;
+    cursor: pointer;
+}
+
+.post-button:hover{
+    background-color: #c0bdbd;
 }
 
 .user-profile{
@@ -133,10 +138,10 @@
     border:none;
     border-radius: 20px;
     padding:8px 16px;
+    cursor: pointer;
 }
 
-.back-button:hover{
-    cursor: pointer;
+.back-button:hover,.done-button:hover{
     background-color: #e0e0e0;
 }
 

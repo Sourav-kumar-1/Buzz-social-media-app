@@ -13,6 +13,7 @@ const AddPhotoModal = ({ openPostModal, closePhotoModal,updateMedia}) => {
 
   const addMediaToPost= () =>{
     updateMedia(media);
+    closePhotoModal();
   }
   const onClick = (e) => {
     inputFile.current.click();
