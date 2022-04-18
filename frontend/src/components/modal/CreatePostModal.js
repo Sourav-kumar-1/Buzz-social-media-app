@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from 'react';
 import Image from "../../assets/user-photo.avif";
 import { BsCardImage } from "react-icons/bs";
 import ModalLayout from "../../components/modal/ModalLayout";

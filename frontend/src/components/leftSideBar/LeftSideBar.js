@@ -1,5 +1,6 @@
 import RecentGroupSubs from "../recentGroupSubs/RecentGroupSubs";
 import AboutUser from "../aboutUser/AboutUser";
+import React from 'react';
 import './leftSideBar.css'
 const LeftSideBar =() =>{
     const style={

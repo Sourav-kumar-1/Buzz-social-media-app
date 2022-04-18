@@ -1,7 +1,4 @@
-*{
-    margin: 0;
-    padding: 0;
-}
+
 
 /* Navbar-------------------------------------*/
 
@@ -11,7 +8,7 @@
     align-items: center;
     padding:2px 12px;
 }
-.logo{
+.nav-logo{
     width:74px;
     height:40px;
 }

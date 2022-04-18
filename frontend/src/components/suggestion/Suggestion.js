@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchIcon } from "@primer/octicons-react";
+/* import { SearchIcon } from "@primer/octicons-react"; */
 import Data from "./dummydata.json";
 import "./suggestion.css";
 function Suggestion({title}) {

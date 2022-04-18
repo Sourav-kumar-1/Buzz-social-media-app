@@ -1,4 +1,5 @@
 import Logo from '../../assets/logo.png';
+import React from 'react';
 import UserPhoto from '../../assets/user-photo.avif'
 import { BsMessenger, BsPersonFill } from 'react-icons/bs';
 import './navbar.css'
@@ -7,7 +8,7 @@ const Navbar = () => {
         <nav className="main-nav">
 
             <div className="left-nav">
-                <a href= "#"><img src={Logo} alt='' className='logo'></img></a>
+                <a href="#"><img src={Logo} alt='' className='nav-logo'></img></a>
                 
             </div>
 

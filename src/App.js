@@ -4,6 +4,7 @@ import {
   Routes,
 } from "react-router-dom";
 import './App.css';
+import React from 'react';
 import Main from './component/Main/Main';
 import User from "./component/profile/user/user";
 import Userprofile from "./component/profile/userprofile/userprofile";
@@ -17,7 +18,7 @@ function App() {
           <Route exact path="/" element={<Main />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/user" element={<User/>}/>
+          <Route path="/user/:username" element={<User/>}/>
           <Route path="/userprofile" element={<Userprofile/>}/>
         </Routes>
       </Router >

@@ -1,7 +1,7 @@
 import './rightSideBar.css'
 import Suggestion from '../suggestion/Suggestion.js'
 import Contacts from '../contacts/Contacts'
-
+import React from 'react';
 const RightSideBar = () => {
  const contacts="Contacts";
  const suggestions="Suggestions";

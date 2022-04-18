@@ -5,6 +5,7 @@ import {FcGlobe,FcBullish} from 'react-icons/fc'
 import {IoIosArrowDown ,IoIosArrowUp} from 'react-icons/io'
 import {FaReact} from 'react-icons/fa';
 import './RecentGroupSubs.css'
+import React from 'react';
 import { useState } from 'react'
 const RecentGroupSubs = () => {
     const[showText,setShowText]=useState(false);

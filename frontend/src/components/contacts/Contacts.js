@@ -1,6 +1,7 @@
 import { BiSearch } from "react-icons/bi";
 import { Users } from "../../dummydata";
 import "./contacts.css"
+import React from 'react';
 import Data from "../suggestion/dummydata.json"
 const Contacts = ({ title }) => {
 

@@ -1,5 +1,6 @@
 import profileImage from '../../assets/user-photo.avif'
 import './aboutUser.css'
+import React from 'react';
 const AboutUser = () => {
     return (
        

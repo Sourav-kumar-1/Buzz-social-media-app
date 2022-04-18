@@ -1,0 +1,36 @@
+.google-sign {
+  width: 40%;
+  background: #fff;
+  border: 1px solid #dddfe2;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  border-radius: 8px;
+  padding: 1rem;
+  align-items: center;
+  text-align: center;
+}
+
+.google-sign > .button {
+  align-self: center;
+  background: #ff4eaf;
+  border: 1px solid #ff4eaf;
+  color: #fff;
+  width: 50%;
+
+  padding: 0.5rem;
+  margin:auto;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+}
+.button:hover{
+  background-color: white;
+  color: #ff4eaf;
+}
+small{
+  color: rgb(167, 165, 165);
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+}

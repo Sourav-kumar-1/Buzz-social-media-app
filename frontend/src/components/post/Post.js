@@ -7,6 +7,7 @@ import { FcDislike } from "react-icons/fc";
 import { AiOutlineLike } from "react-icons/ai";
 import { RiDislikeLine } from "react-icons/ri";
 import { FaRegComment } from "react-icons/fa";
+import React from 'react';
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 
