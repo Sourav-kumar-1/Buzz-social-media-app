@@ -14,7 +14,7 @@ import "./post.css";
 
 import { Users, commentDummyData } from "../../dummydata";
 
-const Post = ({ post,deletePost }) => {
+const Post = ({ post, deletePost }) => {
   // defining state for like and dislike count
   const [likeCount, setLikeCount] = useState(post.like);
   const [dislikeCount, setDislikeCount] = useState(post.dislike);
@@ -28,15 +28,14 @@ const Post = ({ post,deletePost }) => {
   const [commentData, setCommentData] = useState([]);
 
   const [openDeletePopup, setOpenDeletePopup] = useState(false);
-  const [appuser,setAppUser]=useState({});
-
+  const [user, setUser] = useState({});
 
   const handleDotClick = () => {
     setOpenDeletePopup((open) => !open);
   };
 
   const inputCommentRef = useRef(null);
-  const user = Users.filter((u) => u.id === post.userId)[0];
+  // const user = Users.filter((u) => u.id === post.userId)[0];
 
   const focusInput = () => {
     inputCommentRef.current.focus();
@@ -80,17 +79,28 @@ const Post = ({ post,deletePost }) => {
     setCommentData(commentDummyData);
   }, []);
 
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     const res = await axios.get(
-  //       "http://localhost:/5000/posts/timeline/6258816ad417efc2255a7b5d"
-  //     );
-  //     // axios.post("",{})
-  //     console.log(res);
-  //   };
-  //   fetchPosts();
-  // }, []);
+  const fetchUser = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/api/user/${post.userId}`
+      );
+      console.log(res);
+      setUser(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  useEffect(()=>{
+    if(user)
+    {
+      console.log(user);
+    }
+  },[user]);
 
   return (
     <div className="post-container">
@@ -100,17 +110,19 @@ const Post = ({ post,deletePost }) => {
             <img src={profilePhoto}></img>
           </div>
           <div className="postInfo">
-            <h5 className="postUsername">{user.username}</h5>
+            <h5 className="postUsername">{user?.firstName + " " + user?.lastName}</h5>
             <div className="postDate">{post.date}</div>
           </div>
         </div>
 
-{/* 
+        {/* 
 //change ********** */}
         {Users[0].id === post.userId ? (
-          <div className="threeDot" >
+          <div className="threeDot">
             {openDeletePopup ? (
-              <div className="popupContainer" onClick={deletePost}>Remove</div>
+              <div className="popupContainer" onClick={deletePost}>
+                Remove
+              </div>
             ) : (
               <></>
             )}
@@ -119,7 +131,6 @@ const Post = ({ post,deletePost }) => {
         ) : (
           <></>
         )}
-
       </div>
       <div className="post-center">
         <div className="postText">{post.text}</div>
@@ -220,8 +231,8 @@ const SingleComment = ({ c, commentData }) => {
   return (
     <div className="singleComment-container">
       <div className="commentUser-details">
-        <img src={c.user.profilePicture} className="commentUserPhoto"></img>
-        <h4>{c.user.username}</h4>
+        <img src={c.user?.profilePicture} className="commentUserPhoto"></img>
+        <h4>{c.user?.username}</h4>
       </div>
       <div className="commentText">{c.text}</div>
       <div className="commentLike">

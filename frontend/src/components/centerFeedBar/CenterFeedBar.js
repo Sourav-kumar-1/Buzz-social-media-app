@@ -39,14 +39,19 @@ const CenterFeedBar = () => {
     setPostData(Posts);
   }, []);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
+  const fetchPosts = async () => {
+    try {
       const res = await axios.get(
-        "http://localhost:/5000/posts/timeline/6258816ad417efc2255a7b5d"
+        "http://localhost:5000/api/posts/timeline/6258816ad417efc2255a7b5d"
       );
-      // axios.post("",{})
       console.log(res);
-    };
+      // setPostData()
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {  
     fetchPosts();
   }, []);
 
