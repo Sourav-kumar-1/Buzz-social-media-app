@@ -12,14 +12,20 @@ const Navbar = () => {
             </div>
 
             <div className="right-nav">
+                <a href="#">
                 <div className='username'>
                     <img src={UserPhoto} alt='' className='user-image'></img>
                     <div>Shekhar Aggarwal</div>
                 </div>
+                </a>
+             
                 <div className='icons'>
                     <div className='msg-icon'><BsMessenger/></div>
                     <div className='person-icon'><BsPersonFill/></div>
                 </div>
+
+                <div className='logout'>
+                    <a href="#">Sign Out</a></div>
             </div>
 
         </nav>

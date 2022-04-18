@@ -11,7 +11,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 20px;
 }
 .postUserPhoto {
   margin-right: 10px;
@@ -29,23 +29,44 @@
 }
 
 .threeDot {
+  cursor: pointer;
   background-color: #f0f2f5;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 8px;
+  position: relative;
+}
+
+.threeDot:hover{
+  background-color: #e7e7e9;
+}
+
+.popupContainer{
+  cursor: pointer;
+  position: absolute;
+  bottom:-38px;
+  right:0px;
+  background-color: rgb(200, 197, 197);
+  padding:8px 15px;
+  border-radius: 10px;
+  border-top-right-radius:0 ;
 }
 
 
 .postPhoto-Video img {
+  /* height:200px;
+  width:200px; */
   width: 100%;
-  border-radius:12px;
-  max-height: 500px;
+  max-height: 380px;
   object-fit: contain;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 .postUserDetails {
   display: flex;
+  align-items: center;
 }
 
 .postText {
@@ -144,10 +165,11 @@
 .commentUser-details{
   display: flex;
   margin-bottom: 10px;
+  align-items: center;
 }
 
 .commentText{
-  margin-left: 20px;
+  margin-left: 36px;
 }
 
 .singleComment-container{
@@ -184,7 +206,8 @@ align-items: center;
 }
 
 .commentUserPhoto{
-  height: 36px;
-  width: 40px;
+  height: 28px;
+  width: 28px;
   border-radius: 50%;
+  margin-right: 10px;
 }

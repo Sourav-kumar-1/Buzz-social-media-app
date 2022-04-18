@@ -2,52 +2,52 @@
 export const Users = [
   {
     id: 1,
-    profilePicture: "../assets/person/1.jpeg",
+    profilePicture: "1.jpeg",
     username: "Shekhar Agarwal",
   },
   {
     id: 2,
-    profilePicture: "../assets/person/2.jpeg",
+    profilePicture: "2.jpeg",
     username: "Janell Shrum",
   },
   {
     id: 3,
-    profilePicture: "assets/person/3.jpeg",
+    profilePicture: "3.jpeg",
     username: "Alex Durden",
   },
   {
     id: 4,
-    profilePicture: "assets/person/4.jpeg",
+    profilePicture: "4.jpeg",
     username: "Dora Hawks",
   },
   {
     id: 5,
-    profilePicture: "assets/person/5.jpeg",
+    profilePicture: "5.jpeg",
     username: "Thomas Holden",
   },
   {
     id: 6,
-    profilePicture: "assets/person/6.jpeg",
+    profilePicture: "6.jpeg",
     username: "Shirley Beauchamp",
   },
   {
     id: 7,
-    profilePicture: "assets/person/7.jpeg",
+    profilePicture: "7.jpeg",
     username: "Travis Bennett",
   },
   {
     id: 8,
-    profilePicture: "assets/person/8.jpeg",
+    profilePicture: "8.jpeg",
     username: "Kristen Thomas",
   },
   {
     id: 9,
-    profilePicture: "assets/person/9.jpeg",
+    profilePicture: "9.jpeg",
     username: "Gary Duty",
   },
   {
     id: 10,
-    profilePicture: "assets/person/10.jpeg",
+    profilePicture: "10.jpeg",
     username: "Safak Kocaoglu",
   },
 ];
@@ -55,7 +55,7 @@ export const Users = [
 export const Posts = [
   {
     id: 1,
-    photo: "frontend/src/assets/post/1.jpeg",
+    photo: "frontend/src/1.jpeg",
     date: "16 November, 2021",
     userId: 1,
     like: 32,
@@ -64,7 +64,7 @@ export const Posts = [
   },
   {
     id: 2,
-    photo: "../assets/post/2.jpeg",
+    photo: "../2.jpeg",
     date: "12 October, 2021",
     userId: 2,
     like: 2,
@@ -73,7 +73,7 @@ export const Posts = [
   },
   {
     id: 3,
-    photo: "assets/post/3.jpeg",
+    photo: "3.jpeg",
     date: "3 December, 2021",
     userId: 3,
     like: 61,
@@ -82,7 +82,7 @@ export const Posts = [
   },
   {
     id: 4,
-    photo: "./assets/post/4.avif",
+    photo: "./4.avif",
     date: "14 January, 2022",
     userId: 4,
     like: 7,
@@ -91,7 +91,7 @@ export const Posts = [
   },
   {
     id: 5,
-    photo: "assets/post/5.jpeg",
+    photo: "5.jpeg",
     date: "13 July, 2021",
     userId: 5,
     like: 23,
@@ -100,7 +100,7 @@ export const Posts = [
   },
   {
     id: 6,
-    photo: "assets/post/6.jpeg",
+    photo: "6.jpeg",
     date: "8 September, 2021",
     userId: 6,
     like: 44,
@@ -109,7 +109,7 @@ export const Posts = [
   },
   {
     id: 7,
-    photo: "assets/post/7.jpeg",
+    photo: "7.jpeg",
     date: "2 Februrary, 2021",
     userId: 7,
     like: 52,
@@ -118,7 +118,7 @@ export const Posts = [
   },
   {
     id: 8,
-    photo: "assets/post/8.jpeg",
+    photo: "8.jpeg",
     date: "31 March, 2021",
     userId: 8,
     like: 15,
@@ -127,7 +127,7 @@ export const Posts = [
   },
   {
     id: 9,
-    photo: "assets/post/9.jpeg",
+    photo: "9.jpeg",
     date: "5 April, 2022",
     userId: 9,
     like: 11,
@@ -136,7 +136,7 @@ export const Posts = [
   },
   {
     id: 10,
-    photo: "assets/post/10.jpeg",
+    photo: "10.jpeg",
     date: "1 August, 2021",
     userId: 10,
     like: 104,

@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding:2px 8px;
+    padding:2px 12px;
 }
 .logo{
     width:74px;
@@ -29,20 +29,41 @@
     height:28px;
     width:28px;
     border-radius:50%;
-    margin-right: 3px;
+    margin-right: 6px;
 }
 
 .icons{
     display: flex;
+    align-items: center;
+    margin-right:20px;
 }
 
 .msg-icon,.person-icon{
+    height: fit-content;
     background-color: #dbdcde;
-    padding:8px;
+    padding: 8px;
     border-radius: 50%;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .msg-icon{
     margin-right: 6px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.logout{
+    display: flex;
+    align-items: center;
+    padding:2px 10px;
+    border-radius: 10px;
+}
+
+.logout:hover{
+    background-color: #E5E7EA;
 }

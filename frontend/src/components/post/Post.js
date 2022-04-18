@@ -8,12 +8,13 @@ import { AiOutlineLike } from "react-icons/ai";
 import { RiDislikeLine } from "react-icons/ri";
 import { FaRegComment } from "react-icons/fa";
 import { useRef, useState, useEffect } from "react";
+import axios from "axios";
 
 import "./post.css";
 
 import { Users, commentDummyData } from "../../dummydata";
 
-const Post = ({ post }) => {
+const Post = ({ post,deletePost }) => {
   // defining state for like and dislike count
   const [likeCount, setLikeCount] = useState(post.like);
   const [dislikeCount, setDislikeCount] = useState(post.dislike);
@@ -25,6 +26,14 @@ const Post = ({ post }) => {
 
   const [inputComment, setInputComment] = useState("");
   const [commentData, setCommentData] = useState([]);
+
+  const [openDeletePopup, setOpenDeletePopup] = useState(false);
+  const [appuser,setAppUser]=useState({});
+
+
+  const handleDotClick = () => {
+    setOpenDeletePopup((open) => !open);
+  };
 
   const inputCommentRef = useRef(null);
   const user = Users.filter((u) => u.id === post.userId)[0];
@@ -71,6 +80,18 @@ const Post = ({ post }) => {
     setCommentData(commentDummyData);
   }, []);
 
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     const res = await axios.get(
+  //       "http://localhost:/5000/posts/timeline/6258816ad417efc2255a7b5d"
+  //     );
+  //     // axios.post("",{})
+  //     console.log(res);
+  //   };
+  //   fetchPosts();
+  // }, []);
+
+
   return (
     <div className="post-container">
       <div className="post-header">
@@ -83,14 +104,39 @@ const Post = ({ post }) => {
             <div className="postDate">{post.date}</div>
           </div>
         </div>
-        <div className="threeDot">
-          <BsThreeDots></BsThreeDots>
-        </div>
+
+{/* 
+//change ********** */}
+        {Users[0].id === post.userId ? (
+          <div className="threeDot" >
+            {openDeletePopup ? (
+              <div className="popupContainer" onClick={deletePost}>Remove</div>
+            ) : (
+              <></>
+            )}
+            <BsThreeDots onClick={handleDotClick}></BsThreeDots>
+          </div>
+        ) : (
+          <></>
+        )}
+
       </div>
       <div className="post-center">
         <div className="postText">{post.text}</div>
         <div className="postPhoto-Video">
-          <img src={post.photo}></img>
+          {Boolean(post.photo) ? (
+            <>
+              <img
+                src={
+                  typeof post.photo !== "string"
+                    ? URL.createObjectURL(post.photo)
+                    : post.photo
+                }
+              ></img>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="postLike-Dislike-Comment">
           <div className="like-DislikeCount">
@@ -175,7 +221,7 @@ const SingleComment = ({ c, commentData }) => {
     <div className="singleComment-container">
       <div className="commentUser-details">
         <img src={c.user.profilePicture} className="commentUserPhoto"></img>
-        <div>{c.user.username}</div>
+        <h4>{c.user.username}</h4>
       </div>
       <div className="commentText">{c.text}</div>
       <div className="commentLike">

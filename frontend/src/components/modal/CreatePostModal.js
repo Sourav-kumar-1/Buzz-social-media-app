@@ -1,15 +1,12 @@
 import { useState } from "react";
 import Image from "../../assets/user-photo.avif";
 import { BsCardImage } from "react-icons/bs";
-import { RiVideoFill } from "react-icons/ri";
 import ModalLayout from "../../components/modal/ModalLayout";
 import AddPhotoModal from "./AddPhotoModal";
-import AddVideoModal from "./AddVideoModal";
 import { FaTimes } from "react-icons/fa";
 
 const CreatePostModal = ({ openPostModal, closePostModal, addNewPost }) => {
   const [showPhoto, setShowPhoto] = useState(false);
-  const [showVideo, setShowVideo] = useState(false);
   const [textInput, seTextInput] = useState("");
   const [media, setMedia] = useState(null);
 
@@ -23,14 +20,6 @@ const CreatePostModal = ({ openPostModal, closePostModal, addNewPost }) => {
 
   const closePhotoModal = () => {
     setShowPhoto(false);
-  };
-
-  const openVideoModal = () => {
-    setShowVideo(true);
-  };
-
-  const closeVideoModal = () => {
-    setShowVideo(false);
   };
 
   const createNewPost = () => {
@@ -54,10 +43,6 @@ const CreatePostModal = ({ openPostModal, closePostModal, addNewPost }) => {
           closePhotoModal={closePhotoModal}
           updateMedia={updateMedia}
         ></AddPhotoModal>
-      </ModalLayout>
-
-      <ModalLayout showModal={showVideo}>
-        <AddVideoModal closeVideoModal={closeVideoModal}></AddVideoModal>
       </ModalLayout>
 
       <div className="modal-header">
@@ -94,10 +79,6 @@ const CreatePostModal = ({ openPostModal, closePostModal, addNewPost }) => {
             onClick={openPhotoModal}
             className="photo-btn"
           ></BsCardImage>
-          <RiVideoFill
-            onClick={openVideoModal}
-            className="video-btn"
-          ></RiVideoFill>
         </div>
         <button className="post-button" onClick={createNewPost}>
           Post
