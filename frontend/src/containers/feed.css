@@ -1,0 +1,11 @@
+
+.feed-container{
+    display:flex;
+    background-color: #E5E7EA;
+    padding:2rem 6rem 0 6rem
+}
+
+.social-app{
+    width: 100%;
+    display: flex;
+}
