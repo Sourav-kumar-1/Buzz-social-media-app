@@ -31,6 +31,7 @@ function Signup() {
       try {
         await axios.post("http://localhost:5000/api/auth/signup", user);
         navigate("/signin", { replace: true })
+        alert('NOW SIGN IN PLEASE')
       } catch (err) {
         console.log(err);
       }
