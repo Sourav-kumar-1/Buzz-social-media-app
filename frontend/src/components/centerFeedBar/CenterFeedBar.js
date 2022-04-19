@@ -81,7 +81,7 @@ const CenterFeedBar = () => {
           <Post
             userInfo={userInfo}
             post={post}
-            key={idx}
+            key={post._id}
             deletePost={() => deletePost(idx)}
           ></Post>
         );

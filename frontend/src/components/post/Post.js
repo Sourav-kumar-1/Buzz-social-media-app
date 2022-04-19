@@ -10,10 +10,8 @@ import { FaRegComment } from "react-icons/fa";
 import React from "react";
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
-
+import { v4 as uuidv4 } from "uuid";
 import "./post.css";
-
-import { Users, commentDummyData } from "../../dummydata";
 
 const Post = ({ post, deletePost, userInfo }) => {
   // defining state for like and dislike count
@@ -45,28 +43,73 @@ const Post = ({ post, deletePost, userInfo }) => {
   const handleInputChange = (e) => {
     setInputComment(e.target.value);
   };
+  
+  const updateLike = async (payload) => {
+    try {
+      const res = await axios.put(`http://localhost:5000/api/post/${post._id}/like` ,payload);
+      console.log(res);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleLikes = () => {
     if (dislikeIsActive) {
       handleDislikes();
     }
     setLikeCount(!likeIsActive ? likeCount + 1 : likeCount - 1);
+    updateLike({userId : userInfo._id});
     setLikeIsActive((prev) => !prev);
   };
+
+
+  const updateDislike = async (payload) => {
+    try {
+      const res = await axios.put(`http://localhost:5000/api/post/${post._id}/dislike`,payload);
+      console.log(res);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
 
   const handleDislikes = () => {
     if (likeIsActive) {
       handleLikes();
     }
     setDislikeCount(!dislikeIsActive ? dislikeCount + 1 : dislikeCount - 1);
+    updateDislike({userId:userInfo._id});
     setDislikeIsActive((prev) => !prev);
+  };
+
+  const createComment = async (payload) => {
+    try {
+      const res = await axios.post(
+        `http://localhost:5000/api/post/${post._id}/comment`,
+        payload
+      );
+      console.log(res);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && e.target.value.length > 0) {
+      let payload = {
+        commentText: inputComment,
+        userId: userInfo._id,
+        _id: uuidv4(),
+      };
       setCommentData((prevComment) => {
-        return [{ text: inputComment, user: Users[0] }, ...prevComment];
+        return [payload, ...prevComment];
       });
+
+      delete payload._id
+      createComment(payload);
+      
+
       setCommentCount(commentCount + 1);
       setInputComment("");
     }
@@ -84,14 +127,20 @@ const Post = ({ post, deletePost, userInfo }) => {
 
   useEffect(() => {
     if (post?.userId) {
+
       fetchUser(post?.userId);
       setLikeCount(post?.likes?.length);
       setCommentCount(post?.comment?.length);
+      setCommentData(post?.comment);
       setDislikeCount(post?.dislikes?.length);
       setLikeIsActive(post?.likes?.includes(userInfo._id));
       setDislikeIsActive(post?.dislikes?.includes(userInfo._id));
     }
   }, [post]);
+
+  useEffect(()=>{
+    console.log(user)
+  },[user])
 
   return (
     <div className="post-container">
@@ -196,7 +245,7 @@ const Post = ({ post, deletePost, userInfo }) => {
           <SingleComment
             c={c}
             commentData={commentData}
-            key={idx}
+            key={c._id}
           ></SingleComment>
         ))}
       </div>
@@ -210,7 +259,7 @@ const SingleComment = ({ c, commentData }) => {
   const [commentLikeCount, setCommentLikeCount] = useState(10);
   const [isCommentLikeActive, setIsCommentLikeActive] = useState(false);
 
-  const[user,setUser]=useState({});
+  const [user, setUser] = useState({});
 
   const handleLikeComments = () => {
     setIsCommentLikeActive((prev) => !prev);
@@ -222,36 +271,27 @@ const SingleComment = ({ c, commentData }) => {
       : setCommentLikeCount(0);
   };
 
-  // const fetchUser = async (id) => {
-  //   try {
-  //     const res = await axios.get(`http://localhost:5000/api/user/${id}`);
-  //     console.log(res);
-  //     setUser(res.data);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
+  const fetchUser = async (id) => {
+    try {
+      const res = await axios.get(`http://localhost:5000/api/user/${id}`);
+      console.log(res);
+      setUser(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-  // useEffect(() => {
-  //   fetchUser(post?.userId);
-  // })
+  useEffect(() => {
+    fetchUser(c?.userId);
+  }, []);
 
   return (
     <div className="singleComment-container">
       <div className="commentUser-details">
-        <img src={c.user.profilePicture} className="commentUserPhoto"></img>
-        <h4>{c.user.username}</h4>
+        <img src={user?.profilePicture} className="commentUserPhoto"></img>
+        <h4>{user?.firstName + " " + user?.lastName}</h4>
       </div>
-      <div className="commentText">{c.text}</div>
-      <div className="commentLike">
-        <div className="commentLikeButton" onClick={handleLikeComments}>
-          Like
-        </div>
-        <AiFillLike
-          className={isCommentLikeActive ? "setLikeColor" : ""}
-        ></AiFillLike>
-        {commentLikeCount}
-      </div>
+      <div className="commentText">{c.commentText}</div>
     </div>
   );
 };

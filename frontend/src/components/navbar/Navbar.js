@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import UserPhoto from '../../assets/user-photo.avif'
 import { BsMessenger, BsPersonFill } from 'react-icons/bs';
 import './navbar.css'
-import { useNavigate, useHistory } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import { getLocalStorageData } from '../../util';
 const Navbar = () => {
     const navigate = useNavigate();
-    // const history =useHistory();
+    
     const [userInfo,setUserInfo]=useState({});
 
     const getUserData = () =>{
@@ -20,7 +20,8 @@ const Navbar = () => {
     }
     
     const handleSignOut=() =>{
-        navigate(`/user/${userInfo._id}`, { replace: true })
+        window.localStorage.removeItem("userinfo");
+        navigate(`/signin`, { replace: true })
     }
 
     useEffect(() => {
@@ -49,7 +50,7 @@ const Navbar = () => {
                 </div>
 
                 <div className='logout'>
-                    <a href="#">Sign Out</a></div>
+                    <button onClick={handleSignOut}>Sign Out</button></div>
             </div>
 
         </nav>
