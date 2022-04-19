@@ -1,6 +1,10 @@
+.outerclass{
+  display: flex;
+  margin-top:-20px;
+}
 
 .user-container{
-  width: 65%;    
+  width: 60%;    
   margin: 5rem auto;
   background-color: white;
 }
@@ -33,9 +37,10 @@
   position: absolute;
   width: 100px;
   height: 100px;
-  left: 150px;
+  left: 30px;
   right: 0;
   margin-left: 125px;
+  margin-top: 30px;
   top: 130px;
   border: 2px solid white;
   border-radius: 3px;
@@ -103,4 +108,10 @@ input[type=number]::-webkit-outer-spin-button {
 .reset-btn:hover,.sve-btn:hover{
   background-color: white;
 
+}
+
+.suggests{
+  width: 25%;
+  margin-top: 75px;
+  margin-right: 15px;
 }
