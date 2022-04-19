@@ -68,6 +68,7 @@ function Signup() {
           placeholder="confirm Password" />
         <div className="button" onClick={handleSignup} >Sign up</div>
         {error && <div className='error'>some Error Occured</div>}
+          {!error && <div className='success-signin'>now sign in</div>}
         <div>or</div>
         <div className="button" onClick={() => navigate("/signin", { replace: true })}>sign in</div>
       </div>
