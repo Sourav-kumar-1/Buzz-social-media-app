@@ -13,17 +13,6 @@ router.get('/:id', async (req,res)=>{
     res.status(500).json(error)
   }
 })
-
-router.get('/', async(req,res)=>{
-  try {
-    const allUsers = await UserModel.find({}, { _id: 1, firstName: 1, lastName:1 })
-    console.log(allUsers)
-    res.status(200).json(allUsers)
-  } catch (error) {
-    console.log(error)
-    res.status(404).json(error)
-  }
-})
 //update user
   router.put('/:id',async(req,res)=>{
     if(req.body.userId === req.params.id || req.body.isAdmin){

@@ -79,17 +79,21 @@ router.put('/:id/dislike', async (req, res) => {
 })
 
 /* Comment post */
-router.put('/:id/comment', async (req, res) => {
+router.post('/:id/comment', async (req, res) => {
   try {
     const post = await Post.findById(req.params.id)
     console.log(post);
-    if (!post.comment.includes(req.bofy.userId)) {
-      await post.updateOne({ $push: { comment: req.body.userId } });
-      res.status(200).json('comment the post')
-    } else {
-      await post.updateOne({ $pull: { comment: req.body.userId } })
-      res.status(200).json('delete the comment')
-    }
+
+    await post.updateOne({ $push: { comment: req.body } });
+    res.status(200).json("Comment added sucessfully")
+    
+    // if (!post.comment.includes(req.body.userId)) {
+    //   await post.updateOne({ $push: { comment: req.body.userId } });
+    //   res.status(200).json('comment the post')
+    // } else {
+    //   await post.updateOne({ $pull: { comment: req.body.userId } })
+    //   res.status(200).json('delete the comment')
+    // }
   } catch (error) {
     res.status(500).json(error)
   }
