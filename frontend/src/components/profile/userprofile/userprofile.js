@@ -2,7 +2,12 @@ import React from 'react'
 import { IoMdPersonAdd } from 'react-icons/io'
 import { BsBoxArrowUpRight } from 'react-icons/bs'
 import './userprofile.css'
+import { useParams } from 'react-router-dom'
 function Userprofile() {
+
+  // const {id} =useParams();
+  // console.log(id);
+
   return (
     <div className='user-profile-container'>
       <div className='cover-profile-img'>

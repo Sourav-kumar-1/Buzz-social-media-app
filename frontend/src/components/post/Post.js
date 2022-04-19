@@ -7,7 +7,7 @@ import { FcDislike } from "react-icons/fc";
 import { AiOutlineLike } from "react-icons/ai";
 import { RiDislikeLine } from "react-icons/ri";
 import { FaRegComment } from "react-icons/fa";
-import React from 'react';
+import React from "react";
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 
@@ -15,11 +15,11 @@ import "./post.css";
 
 import { Users, commentDummyData } from "../../dummydata";
 
-const Post = ({ post,deletePost }) => {
+const Post = ({ post, deletePost, userInfo }) => {
   // defining state for like and dislike count
-  const [likeCount, setLikeCount] = useState(post.like);
-  const [dislikeCount, setDislikeCount] = useState(post.dislike);
-  const [commentCount, setCommentCount] = useState(post.comment);
+  const [likeCount, setLikeCount] = useState(0);
+  const [dislikeCount, setDislikeCount] = useState(0);
+  const [commentCount, setCommentCount] = useState(0);
 
   //defining state to check if like is active or not
   const [likeIsActive, setLikeIsActive] = useState(false);
@@ -29,15 +29,14 @@ const Post = ({ post,deletePost }) => {
   const [commentData, setCommentData] = useState([]);
 
   const [openDeletePopup, setOpenDeletePopup] = useState(false);
-  const [appuser,setAppUser]=useState({});
-
+  const [user, setUser] = useState({});
 
   const handleDotClick = () => {
     setOpenDeletePopup((open) => !open);
   };
 
   const inputCommentRef = useRef(null);
-  const user = Users.filter((u) => u.id === post.userId)[0];
+  // const user = Users.filter((u) => u.id === post.userId)[0];
 
   const focusInput = () => {
     inputCommentRef.current.focus();
@@ -73,45 +72,48 @@ const Post = ({ post,deletePost }) => {
     }
   };
 
-  // useEffect(() => {
-  //   console.log(commentData);
-  // }, [commentData]);
+  const fetchUser = async (id) => {
+    try {
+      const res = await axios.get(`http://localhost:5000/api/user/${id}`);
+      console.log(res);
+      setUser(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
-    setCommentData(commentDummyData);
-  }, []);
-
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     const res = await axios.get(
-  //       "http://localhost:/5000/posts/timeline/6258816ad417efc2255a7b5d"
-  //     );
-  //     // axios.post("",{})
-  //     console.log(res);
-  //   };
-  //   fetchPosts();
-  // }, []);
-
+    if (post?.userId) {
+      fetchUser(post?.userId);
+      setLikeCount(post?.likes?.length);
+      setCommentCount(post?.comment?.length);
+      setDislikeCount(post?.dislikes?.length);
+      setLikeIsActive(post?.likes?.includes(userInfo._id));
+      setDislikeIsActive(post?.dislikes?.includes(userInfo._id));
+    }
+  }, [post]);
 
   return (
     <div className="post-container">
       <div className="post-header">
         <div className="postUserDetails">
           <div className="postUserPhoto">
-            <img src={profilePhoto}></img>
+            <img src={user?.profilePicture}></img>
           </div>
           <div className="postInfo">
-            <h5 className="postUsername">{user.username}</h5>
-            <div className="postDate">{post.date}</div>
+            <h5 className="postUsername">
+              {user?.firstName + " " + user?.lastName}
+            </h5>
+            <div className="postDate">{post.createdAt}</div>
           </div>
         </div>
 
-{/* 
-//change ********** */}
-        {Users[0].id === post.userId ? (
-          <div className="threeDot" >
+        {userInfo._id === post.userId ? (
+          <div className="threeDot">
             {openDeletePopup ? (
-              <div className="popupContainer" onClick={deletePost}>Remove</div>
+              <div className="popupContainer" onClick={deletePost}>
+                Remove
+              </div>
             ) : (
               <></>
             )}
@@ -120,10 +122,9 @@ const Post = ({ post,deletePost }) => {
         ) : (
           <></>
         )}
-
       </div>
       <div className="post-center">
-        <div className="postText">{post.text}</div>
+        <div className="postText">{post.postText}</div>
         <div className="postPhoto-Video">
           {Boolean(post.photo) ? (
             <>
@@ -180,7 +181,7 @@ const Post = ({ post,deletePost }) => {
 
         <div className="commentBox">
           <div className="userPhoto">
-            <img src={userImage}></img>
+            <img src={userInfo?.profilePicture}></img>
           </div>
           <input
             className="commentBox-input"
@@ -209,6 +210,8 @@ const SingleComment = ({ c, commentData }) => {
   const [commentLikeCount, setCommentLikeCount] = useState(10);
   const [isCommentLikeActive, setIsCommentLikeActive] = useState(false);
 
+  const[user,setUser]=useState({});
+
   const handleLikeComments = () => {
     setIsCommentLikeActive((prev) => !prev);
 
@@ -218,6 +221,20 @@ const SingleComment = ({ c, commentData }) => {
       ? setCommentLikeCount(commentLikeCount - 1)
       : setCommentLikeCount(0);
   };
+
+  // const fetchUser = async (id) => {
+  //   try {
+  //     const res = await axios.get(`http://localhost:5000/api/user/${id}`);
+  //     console.log(res);
+  //     setUser(res.data);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchUser(post?.userId);
+  // })
 
   return (
     <div className="singleComment-container">

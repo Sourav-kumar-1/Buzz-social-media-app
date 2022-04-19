@@ -6,7 +6,7 @@ import ModalLayout from "../../components/modal/ModalLayout";
 import AddPhotoModal from "./AddPhotoModal";
 import { FaTimes } from "react-icons/fa";
 
-const CreatePostModal = ({ openPostModal, closePostModal, addNewPost }) => {
+const CreatePostModal = ({ openPostModal, closePostModal, addNewPost,userInfo }) => {
   const [showPhoto, setShowPhoto] = useState(false);
   const [textInput, seTextInput] = useState("");
   const [media, setMedia] = useState(null);
@@ -54,8 +54,8 @@ const CreatePostModal = ({ openPostModal, closePostModal, addNewPost }) => {
       </div>
       <div className="modal-body">
         <div className="user-profile">
-          <img src={Image} alt=""></img>
-          <h5>Shekhar Agarwal </h5>
+          <img src={userInfo?.profilePicture} alt=""></img>
+          <h5>{userInfo?.firstName + " " + userInfo?.lastName} </h5>
         </div>
         <div>
           <textarea

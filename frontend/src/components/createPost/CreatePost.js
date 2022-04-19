@@ -7,7 +7,7 @@ import CreatePostModal from '../modal/CreatePostModal'
 
 
 
-const CreatePost = ({addNewPost}) => {
+const CreatePost = ({addNewPost,userInfo}) => {
   const [showModal, setShowModal] = useState(false);
   const [showPhotoVideo,setPhotoVideo]=useState(false);
 
@@ -24,21 +24,16 @@ const CreatePost = ({addNewPost}) => {
     <div className="createPost-container">
       <div className="input-container">
         <div className="user-photo">
-          <img src={Image} alt=""></img>
+          <img src={userInfo?.profilePicture} alt=""></img>
         </div>
         <button className="createPost-btn" onClick={openPostModal}>
           Start a post...
         </button>
         <ModalLayout
           showModal={showModal}
-          //   data={
-          //     <>
-          //       <CreatePostModal closeModal={closeModal}></CreatePostModal>
-          //     </>
-          //   }
         >
           <>
-            <CreatePostModal openPostModal={openPostModal} closePostModal={closePostModal} addNewPost={addNewPost}></CreatePostModal>
+            <CreatePostModal userInfo={userInfo} openPostModal={openPostModal} closePostModal={closePostModal} addNewPost={addNewPost}></CreatePostModal>
           </>
         </ModalLayout>
 

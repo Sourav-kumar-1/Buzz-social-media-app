@@ -1,9 +1,32 @@
 import Logo from '../../assets/logo.png';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import UserPhoto from '../../assets/user-photo.avif'
 import { BsMessenger, BsPersonFill } from 'react-icons/bs';
 import './navbar.css'
+import { useNavigate, useHistory } from 'react-router-dom'
+import { getLocalStorageData } from '../../util';
 const Navbar = () => {
+    const navigate = useNavigate();
+    // const history =useHistory();
+    const [userInfo,setUserInfo]=useState({});
+
+    const getUserData = () =>{
+       const userData= getLocalStorageData("userinfo");
+       setUserInfo(userData);
+    }
+
+    const handleClick=() =>{
+        navigate(`/user/${userInfo._id}`, { replace: true })
+    }
+    
+    const handleSignOut=() =>{
+        navigate(`/user/${userInfo._id}`, { replace: true })
+    }
+
+    useEffect(() => {
+        getUserData();
+    },[])
+
     return (
         <nav className="main-nav">
 
@@ -14,9 +37,9 @@ const Navbar = () => {
 
             <div className="right-nav">
                 <a href="#">
-                <div className='username'>
-                    <img src={UserPhoto} alt='' className='user-image'></img>
-                    <div>Shekhar Aggarwal</div>
+                <div className='username' onClick={handleClick}>
+                    <img src={userInfo?.profilePicture} alt='' className='user-image'></img>
+                    <div>{userInfo?.firstName + " " + userInfo?.lastName}</div>
                 </div>
                 </a>
              
