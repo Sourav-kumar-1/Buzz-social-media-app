@@ -45,7 +45,19 @@ const CenterFeedBar = () => {
     });
   };
 
-  const deletePost = (index) => {
+  const deletePostApi= async (id,payload) =>{
+    try {
+      console.log(payload);
+      const res= await axios.delete(`http://localhost:5000/api/post/${id}/${payload.userId}`)
+      
+    } catch (err) {
+      console.error(err); 
+    }
+  }
+
+
+  const deletePost = async (index) => {
+   await deletePostApi(postData[index]._id,{userId : userInfo._id})
     setPostData((prev) => prev.filter((data, idx) => index !== idx));
   };
 

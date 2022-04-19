@@ -31,18 +31,18 @@ const Navbar = () => {
     return (
         <nav className="main-nav">
 
-            <div className="left-nav">
-                <a href="#"><img src={Logo} alt='' className='nav-logo'></img></a>
+            <div className="left-nav" >
+                <img src={Logo} alt='' className='nav-logo'></img>
                 
             </div>
 
             <div className="right-nav">
-                <a href="#">
+            
                 <div className='username' onClick={handleClick}>
                     <img src={userInfo?.profilePicture} alt='' className='user-image'></img>
                     <div>{userInfo?.firstName + " " + userInfo?.lastName}</div>
                 </div>
-                </a>
+            
              
                 <div className='icons'>
                     <div className='msg-icon'><BsMessenger/></div>

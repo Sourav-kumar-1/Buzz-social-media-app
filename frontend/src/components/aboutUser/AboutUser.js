@@ -1,9 +1,10 @@
 import profileImage from '../../assets/user-photo.avif'
 import './aboutUser.css'
 import React, { useEffect, useState } from 'react';
+import { useNavigate} from 'react-router-dom'
 import { getLocalStorageData } from '../../util';
 const AboutUser = () => {
-
+    const navigate = useNavigate();
     const[userInfo,setUserInfo]=useState({});
 
     const getUserData=() =>{
@@ -12,6 +13,11 @@ const AboutUser = () => {
         setUserInfo(userData);
     }
 
+    const handleClick=() =>{
+        navigate(`/user/${userInfo._id}`, { replace: true })
+    }
+    
+
     useEffect(()=>{
         getUserData();
     },[])
@@ -19,8 +25,8 @@ const AboutUser = () => {
     return (
        
         <div className="profile-container">
-            <div className="profile-image">
-                <a href='#'><img src={userInfo?.profilePicture} alt=''></img></a>
+            <div className="profile-image" onClick={handleClick}>
+                <img src={userInfo?.profilePicture} alt=''></img>
             </div>
             <div className="profileName">
                 <h4><a href='#'>{userInfo?.firstName + " " + userInfo?.lastName}</a></h4>
