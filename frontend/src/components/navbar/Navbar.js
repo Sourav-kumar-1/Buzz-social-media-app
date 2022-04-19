@@ -30,11 +30,13 @@ const Navbar = () => {
 
     return (
         <nav className="main-nav">
-
+            <a href="/feed">
             <div className="left-nav" >
                 <img src={Logo} alt='' className='nav-logo'></img>
                 
             </div>
+            </a>
+            
 
             <div className="right-nav">
             
@@ -50,7 +52,7 @@ const Navbar = () => {
                 </div>
 
                 <div className='logout'>
-                    <button onClick={handleSignOut}>Sign Out</button></div>
+                    <button className ="signout-btn" onClick={handleSignOut}>Sign Out</button></div>
             </div>
 
         </nav>

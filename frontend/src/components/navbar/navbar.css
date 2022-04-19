@@ -59,10 +59,17 @@ a{
 .logout{
     display: flex;
     align-items: center;
-    padding:2px 10px;
     border-radius: 10px;
 }
 
-.logout:hover{
-    background-color: #E5E7EA;
+.signout-btn{
+    border: none;
+    padding:8px 10px ;
 }
+
+.signout-btn:hover{
+    cursor: pointer;
+    background-color: #dbdcde;
+}
+
+
