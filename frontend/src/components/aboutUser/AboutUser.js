@@ -8,7 +8,7 @@ const AboutUser = () => {
             <div className="profile-image">
                 <a href='#'><img src={profileImage} alt=''></img></a>
             </div>
-            <div className="profile-name">
+            <div className="profileName">
                 <h4><a href='#'>Shekhar Agarwal</a></h4>
                 <div>Newly Recruit at TTN</div>
             </div>

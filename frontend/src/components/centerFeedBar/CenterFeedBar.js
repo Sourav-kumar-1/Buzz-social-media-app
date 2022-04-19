@@ -7,9 +7,8 @@ import "./centerFeedBar.css";
 import axios from "axios";
 
 const CenterFeedBar = () => {
-  // const [posts,setPosts]=useState([]);
   const [postData, setPostData] = useState([]);
-/* 
+
   const newCreatePost = (payload) => {
     const res = axios.post("http://localhost:5000/api/post/api/", payload);
     return res.data;
@@ -38,34 +37,29 @@ const CenterFeedBar = () => {
 
   useEffect(() => {
     setPostData(Posts);
-  }, []); */
+  }, []); 
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const res = await axios.get(
-          "http://localhost:5000/posts/timeline/6258817cd417efc2255a7b5f",
-        );
-        console.log(res)
-      } 
-      catch (error) {
-        console.log(error)
-      }
-     
-  
-      
-      // axios.post("",{})
-      
-    };
-    fetchPosts();
-  }, []);
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     try {
+  //       const res = await axios.get(
+  //         "http://localhost:5000/posts/timeline/6258817cd417efc2255a7b5f",
+  //       );
+  //       console.log(res)
+  //     } 
+  //     catch (error) {
+  //       console.log(error)
+  //     }      
+  //   };
+  //   fetchPosts();
+  // }, []);
 
   return (
     <div className="centerFeedBar-container">
-    {/*   <CreatePost addNewPost={addNewPost}></CreatePost> */}
+       <CreatePost addNewPost={addNewPost}></CreatePost>
       {postData.map((post, idx) => {
         return (
-          <Post post={post} key={idx} /* deletePost={() => deletePost(idx)} */></Post>
+          <Post post={post} key={idx} deletePost={() => deletePost(idx)}></Post>
         );
       })}
     </div>

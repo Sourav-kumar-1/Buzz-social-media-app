@@ -183,6 +183,7 @@ const Post = ({ post,deletePost }) => {
             <img src={userImage}></img>
           </div>
           <input
+            className="commentBox-input"
             ref={inputCommentRef}
             placeholder="Write a comment..."
             onKeyPress={handleKeyPress}
