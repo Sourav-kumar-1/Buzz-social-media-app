@@ -60,6 +60,8 @@
     color: white;
 }
 .bt{
+    display: flex;
+    align-items: center;
     background-color: white;
     border: none;
 }
