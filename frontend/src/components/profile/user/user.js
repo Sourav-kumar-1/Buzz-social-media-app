@@ -1,4 +1,5 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react';
+import { getLocalStorageData } from '../../../util';
 /* import {BsCameraFill}  from 'react-icons/bs' */
 import Navbar from '../../navbar/Navbar'
 import Suggestion from '../../suggestion/Suggestion'
@@ -6,15 +7,25 @@ import './user.css'
 ///import {Button,Form,Col,Ro} from 'react-bootstrap';
 function User() {
 
-  const handleProfile = () =>{
+  const [userInfo, setUserInfo] = useState({});
+
+  const getUserData = () => {
+    const userData = getLocalStorageData("userinfo");
+    setUserInfo(userData);
+  }
+  const handleProfile = () => {
     console.log('profile clicked')
   }
 
-  const handleCover = () =>{
+  const handleCover = () => {
     console.log('cover clicked')
   }
 
-  
+  useEffect(() => {
+    getUserData();
+  }, [])
+
+
   return (
     <>
       <div className='nav'>
@@ -25,12 +36,12 @@ function User() {
         <div className='user-container'>
           <div>
             <img src='/assets/cover1.jpg' alt='profile-pic' className='cover-img' onClick={handleCover}></img>
-            <img src='/assets/photo6.jpg' alt='profile-pic' className='profile-img' onClick={handleProfile}></img>
-            <h4 className='profile-name'>Sara Wood</h4>
+            <img src={userInfo?.profilePicture} alt='profile-pic' className='profile-img' onClick={handleProfile}></img>
+            <h4 className='profile-name'>{userInfo?.firstName + " " + userInfo?.lastName}</h4>
           </div>
           <div className='form'>
             <div className='left-content'>
-              <label>First Name</label><br />
+              <label>First name</label><br />
               <input type='text' placeholder='firstName' />
               <br />
               <label>Designation</label><br />
@@ -91,6 +102,6 @@ function User() {
 }
 
 
-  
+
 
 export default User
