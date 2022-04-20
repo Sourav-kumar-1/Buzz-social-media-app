@@ -27,14 +27,14 @@ const CenterFeedBar = () => {
       id: uuidv4(),
       userId: userInfo._id,
       postText: text,
-      photo: media,
+      postimg: media,
       createdAt: new Date().toUTCString,
       like: [],
       dislike: [],
       comment: [],
     };
     payload = await newCreatePost(payload);
-    console.log(payload);
+    
 
     payload = {
       ...payload,
@@ -47,7 +47,7 @@ const CenterFeedBar = () => {
 
   const deletePostApi= async (id,payload) =>{
     try {
-      console.log(payload);
+      
       const res= await axios.delete(`http://localhost:5000/api/post/${id}/${payload.userId}`)
       
     } catch (err) {
@@ -73,11 +73,11 @@ const CenterFeedBar = () => {
           userData._id ? userData._id : "625c0e3bc1924c81e7329ea7"
         }`
       );
-      console.log(res);
+   
       setPostData(res.data.allPosts);
       setUserInfo(userData);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

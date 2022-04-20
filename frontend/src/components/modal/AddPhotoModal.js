@@ -1,20 +1,39 @@
 import { FaTimes } from "react-icons/fa";
 import React, { useRef, useState } from "react";
+import axios from "axios";
+
 // import { update } from "tar";
-const AddPhotoModal = ({ openPostModal, closePhotoModal,updateMedia}) => {
+const AddPhotoModal = ({ openPostModal, closePhotoModal, updateMedia }) => {
   const inputFile = useRef(null);
 
   const [media, setMedia] = useState();
 
-  const handleMediaChange= (e) => {
-    console.log(e.target.files);
+  const handleMediaChange = (e) => {
     setMedia(e.target.files[0]);
   };
 
-  const addMediaToPost= () =>{
-    updateMedia(media);
+  const uploadImage = async () => {
+    const formData = new FormData();
+    formData.append("file", media);
+    formData.append("upload_preset", "buzz-app");
+
+    const res = await axios.post(
+      "https://api.cloudinary.com/v1_1/myphotoscloud/image/upload",
+      formData
+    );
+
+
+    updateMedia(res.data.url);
+    setMedia(res.data.url);
+
+    return res;
+  };
+
+  const addMediaToPost = async () => {
+    await uploadImage();
     closePhotoModal();
-  }
+  };
+
   const onClick = (e) => {
     inputFile.current.click();
   };
@@ -38,7 +57,7 @@ const AddPhotoModal = ({ openPostModal, closePhotoModal,updateMedia}) => {
         />
         {media ? (
           <div className="post-image">
-          <img src={URL.createObjectURL(media)}></img>
+            <img src={URL.createObjectURL(media)}></img>
           </div>
         ) : (
           <div className="selectImages" onClick={onClick}>
@@ -52,7 +71,9 @@ const AddPhotoModal = ({ openPostModal, closePhotoModal,updateMedia}) => {
           <button className="back-button" onClick={closePhotoModal}>
             Back
           </button>
-          <button className="done-button" onClick={addMediaToPost}>Done</button>
+          <button className="done-button" onClick={addMediaToPost}>
+            Done
+          </button>
         </div>
       </div>
     </div>

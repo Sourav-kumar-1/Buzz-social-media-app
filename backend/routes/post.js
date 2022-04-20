@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const Post = require('../models/Post')
 const UserModel = require('../models/UserModel')
+const cloudinary=require("../utils/cloudinary")
+const upload=require("../utils/multer")
 
 /* create post */
 
@@ -13,6 +15,8 @@ router.post('/', async (req, res) => {
     res.status(500).json(error)
   }
 })
+
+
 
 /* update post */
 router.put("/:id", async (req, res) => {
@@ -87,13 +91,6 @@ router.post('/:id/comment', async (req, res) => {
     await post.updateOne({ $push: { comment: req.body } });
     res.status(200).json("Comment added sucessfully")
     
-    // if (!post.comment.includes(req.body.userId)) {
-    //   await post.updateOne({ $push: { comment: req.body.userId } });
-    //   res.status(200).json('comment the post')
-    // } else {
-    //   await post.updateOne({ $pull: { comment: req.body.userId } })
-    //   res.status(200).json('delete the comment')
-    // }
   } catch (error) {
     res.status(500).json(error)
   }
@@ -113,8 +110,9 @@ router.get('/:id',async(req,res)=>{
 router.get("/timeline/:userId", async (req, res) => {
   try {
     const currentUser = await UserModel.findById(req.params.userId);
+
     console.log(currentUser);
-    const userPosts = await Post.find({ userId: currentUser._id });
+    const userPosts = await Post.find({ userId: currentUser._id }).sort({ createdAt: 'desc'});
     console.log(userPosts);
     const friendPosts = await Promise.all(
       currentUser.friendRequest.map((friendId) => {
@@ -130,22 +128,5 @@ router.get("/timeline/:userId", async (req, res) => {
   }
 });
 
-/* router.get("/timeline/:id", async (req, res) => {
-  try {
-    const currentUser = await UserModel.findById(req.params.id);
-    //console.log(currentUser);
-
-    //console.log(currentUser.following);
-    const userIds = [currentUser._id, ...currentUser.friendRequest];
-    //  console.log(userIds);
-    const post = await Post.find({ userId: { "$in": userIds } }).lean();
-    //console.log("this is post",post);
-    res.status(200).send(post);
-    console.log(post)
-  } catch (err) {
-    console.log(err);
-    res.status(500).send(err);
-  }
-}); */
 
 module.exports = router;

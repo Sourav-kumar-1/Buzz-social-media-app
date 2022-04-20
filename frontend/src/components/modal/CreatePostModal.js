@@ -1,6 +1,6 @@
 import { useState } from "react";
 import React from 'react';
-import Image from "../../assets/user-photo.avif";
+
 import { BsCardImage } from "react-icons/bs";
 import ModalLayout from "../../components/modal/ModalLayout";
 import AddPhotoModal from "./AddPhotoModal";
@@ -10,6 +10,7 @@ const CreatePostModal = ({ openPostModal, closePostModal, addNewPost,userInfo })
   const [showPhoto, setShowPhoto] = useState(false);
   const [textInput, seTextInput] = useState("");
   const [media, setMedia] = useState(null);
+ 
 
   const updateMedia = (m) => {
     setMedia(m);
@@ -23,13 +24,12 @@ const CreatePostModal = ({ openPostModal, closePostModal, addNewPost,userInfo })
     setShowPhoto(false);
   };
 
-  const createNewPost = () => {
+  const createNewPost = async () => {
     if(textInput)
     {
       addNewPost(textInput, media);
       closePostModal();
     }
-   
   };
 
   const handleTextInput = (e) => {
@@ -67,11 +67,12 @@ const CreatePostModal = ({ openPostModal, closePostModal, addNewPost,userInfo })
           ></textarea>
           {media ? (
             <div className="post-image">
-              <img src={URL.createObjectURL(media)}></img>
+              <img src={ typeof media !== "string" ? URL.createObjectURL(media) : media}></img>
             </div>
           ) : (
             <></>
           )}
+     
         </div>
       </div>
       <div className="modal-footer">
@@ -84,6 +85,9 @@ const CreatePostModal = ({ openPostModal, closePostModal, addNewPost,userInfo })
         <button className="post-button" onClick={createNewPost}>
           Post
         </button>
+        {/* ...................... */}
+        
+       
       </div>
     </>
   );

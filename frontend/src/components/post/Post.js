@@ -47,7 +47,7 @@ const Post = ({ post, deletePost, userInfo }) => {
   const updateLike = async (payload) => {
     try {
       const res = await axios.put(`http://localhost:5000/api/post/${post._id}/like` ,payload);
-      console.log(res);
+    
     } catch (err) {
       console.error(err);
     }
@@ -66,7 +66,7 @@ const Post = ({ post, deletePost, userInfo }) => {
   const updateDislike = async (payload) => {
     try {
       const res = await axios.put(`http://localhost:5000/api/post/${post._id}/dislike`,payload);
-      console.log(res);
+      
     } catch (err) {
       console.error(err);
     }
@@ -89,7 +89,7 @@ const Post = ({ post, deletePost, userInfo }) => {
         `http://localhost:5000/api/post/${post._id}/comment`,
         payload
       );
-      console.log(res);
+     
     } catch (err) {
       console.error(err);
     }
@@ -118,7 +118,7 @@ const Post = ({ post, deletePost, userInfo }) => {
   const fetchUser = async (id) => {
     try {
       const res = await axios.get(`http://localhost:5000/api/user/${id}`);
-      console.log(res);
+     
       setUser(res.data);
     } catch (err) {
       console.error(err);
@@ -175,13 +175,13 @@ const Post = ({ post, deletePost, userInfo }) => {
       <div className="post-center">
         <div className="postText">{post.postText}</div>
         <div className="postPhoto-Video">
-          {Boolean(post.photo) ? (
+          {Boolean(post.postimg) ? (
             <>
               <img
                 src={
-                  typeof post.photo !== "string"
-                    ? URL.createObjectURL(post.photo)
-                    : post.photo
+                  typeof post.postimg !== "string"
+                    ? URL.createObjectURL(post.postimg)
+                    : post.postimg
                 }
               ></img>
             </>
@@ -274,7 +274,6 @@ const SingleComment = ({ c, commentData }) => {
   const fetchUser = async (id) => {
     try {
       const res = await axios.get(`http://localhost:5000/api/user/${id}`);
-      console.log(res);
       setUser(res.data);
     } catch (err) {
       console.error(err);

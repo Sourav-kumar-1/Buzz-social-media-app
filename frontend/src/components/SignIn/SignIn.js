@@ -22,7 +22,7 @@ function SignIn() {
       }
       setLoading(true)
       const { data } = await axios.post
-        ("http://localhost:5000/api/auth/login",
+        ("http://localhost:5000/api/auth/signin",
           { email, password }, login)
       console.log(data)
       localStorage.setItem('userinfo', JSON.stringify(data))
